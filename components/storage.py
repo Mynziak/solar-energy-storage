@@ -1,5 +1,6 @@
 import logging
 
+
 class SonnenStorage:
     def __init__(self, system_setup="Basic"):
         """
@@ -7,9 +8,10 @@ class SonnenStorage:
 
         :param system_setup: The system setup ("Basic", "Standard", or "Pro") based on customer requirements (default is "Basic").
         """
-
         self.inverter = self.Inverter()
         self.controller = self.Controller()
+
+        # Set inverter max power and battery module max power
         self.battery_modules = [self.BatteryModule() for _ in range(self.get_max_battery_modules(system_setup))]
         self.power_command = 0.0
 
@@ -39,7 +41,6 @@ class SonnenStorage:
 
             # Update the inverter's power output
             self.inverter.power_inverter = max_charge_power
-            # self.logger.info(f"Charging battery with {max_charge_power}W")
 
             # Remaining surplus power after charging the battery
             remaining_surplus = surplus_pv - max_charge_power
@@ -47,7 +48,7 @@ class SonnenStorage:
             # If there's still surplus power, it can be sold to the provider
             if remaining_surplus > 0:
                 grid.set_power_sold(remaining_surplus)
-                # self.logger.info(f"Selling {remaining_surplus}W to the grid")
+
         else:
             # Discharge the battery to supply power to the house
             max_discharge_power = min(-surplus_pv, self.inverter.get_max_power())
@@ -55,7 +56,6 @@ class SonnenStorage:
 
             # Update the inverter's power output
             self.inverter.power_inverter = -max_discharge_power
-            # self.logger.info(f"Discharging battery with {max_discharge_power}W to the house")
 
             # Remaining power needed after discharging the battery
             remaining_power_needed = house.get_power_in() - pv_panel.get_power() - max_discharge_power
@@ -64,7 +64,6 @@ class SonnenStorage:
             if remaining_power_needed > 0:
                 max_grid_power = min(remaining_power_needed, self.inverter.get_max_power())
                 grid.set_power_bought(max_grid_power)
-                # self.logger.info(f"Buying {max_grid_power}W from the grid")
 
     class Inverter:
         def __init__(self, max_power=5000.0, battery_voltage=48.0, battery_current=0.0, power_inverter=0.0,

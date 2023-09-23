@@ -1,0 +1,5 @@
+**Advantages of Using Pytest Fixtures Over Setup and Teardown Methods**
+
+Pytest fixtures enhance modularity and reusability by encapsulating setup and teardown logic into reusable components, leading to more organized and readable test code. Fixtures also support parametrization, allowing tests to be executed with various data inputs, making it easier to test different scenarios.
+
+Moreover, fixtures facilitate parallel test execution, which can significantly improve test suite performance by running tests concurrently. Additionally, Pytest takes care of automatic cleanup of fixtures, ensuring that resources are properly managed, even if tests fail. This results in more robust and reliable test automation code, with reduced code duplication due to the abstraction of common setup and teardown code.
