@@ -11,7 +11,7 @@ inputs.
 - [Scenario Description](#scenario-description)
 - [Components](#components)
 - [Python Assessment Goal](#python-assessment-goal)
-- [Running Tests](#Running Tests)
+- [Running Tests](#running-tests)
 - [Fibonacci Sequence Generator](#fibonacci-sequence-generator)
 - [Advantages of Using Pytest Fixtures](#advantages-of-using-pytest-fixtures)
 - [Integrating Machine Learning](#integrating-machine-learning)
