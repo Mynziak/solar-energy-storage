@@ -76,5 +76,5 @@ the power management logic follows the scenario description correctly.
 ### Advantages of Using Pytest Fixtures
 Refer to the [Pytest advantages of fixtures](docs/pytest_advantages_of_fixtures.md) for details.
 
-### Integrating Machine Learning into SonnenStorage Test Automation
+### Integrating Machine Learning
 Refer to the [Integrating ML](docs/integrating_ml.md) for details.
