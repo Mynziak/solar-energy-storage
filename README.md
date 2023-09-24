@@ -73,7 +73,7 @@ the power management logic follows the scenario description correctly.
    python3 -m pytest tests/fibonacci.py
 
 
-### Advantages of Using Pytest Fixtures Over Setup and Teardown Methods
+### Advantages of Using Pytest Fixtures
 Refer to the [Pytest advantages of fixtures](docs/pytest_advantages_of_fixtures.md) for details.
 
 ### Integrating Machine Learning into SonnenStorage Test Automation

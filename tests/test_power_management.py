@@ -28,8 +28,8 @@ def test_basic_power_management(pv_power, house_power, grid_power, expected_inve
 
     # Assert the states of components match the expected values
     assert storage_basic.inverter.get_power_inverter() == expected_inverter_power
-    assert grid.get_power_sold() == expected_grid_sold
-    assert grid.get_power_bought() == expected_grid_bought
+    assert grid.sold_power == expected_grid_sold
+    assert grid.bought_power == expected_grid_bought
 
 
 @pytest.mark.parametrize(
@@ -56,8 +56,8 @@ def test_standart_power_management(pv_power, house_power, grid_power, expected_i
 
     # Assert the states of components match the expected values
     assert storage_standart.inverter.get_power_inverter() == expected_inverter_power
-    assert grid.get_power_sold() == expected_grid_sold
-    assert grid.get_power_bought() == expected_grid_bought
+    assert grid.sold_power == expected_grid_sold
+    assert grid.bought_power == expected_grid_bought
 
 
 @pytest.mark.parametrize(
@@ -84,5 +84,5 @@ def test_pro_power_management(pv_power, house_power, grid_power, expected_invert
 
     # Assert the states of components match the expected values
     assert storage_pro.inverter.get_power_inverter() == expected_inverter_power
-    assert grid.get_power_sold() == expected_grid_sold
-    assert grid.get_power_bought() == expected_grid_bought
+    assert grid.sold_power == expected_grid_sold
+    assert grid.bought_power == expected_grid_bought

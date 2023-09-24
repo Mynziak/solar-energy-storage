@@ -32,7 +32,8 @@ class SonnenStorage:
             raise ValueError("Invalid system setup")
 
     def manage_power(self, pv_panel, house, grid):
-        surplus_pv = pv_panel.get_power() - house.get_power_in()
+
+        surplus_pv = pv_panel.power - house.power_in
 
         if surplus_pv > 0:
             # Charge the battery if there is surplus PV production
@@ -47,7 +48,7 @@ class SonnenStorage:
 
             # If there's still surplus power, it can be sold to the provider
             if remaining_surplus > 0:
-                grid.set_power_sold(remaining_surplus)
+                grid.sold_power(remaining_surplus)
 
         else:
             # Discharge the battery to supply power to the house
@@ -58,12 +59,12 @@ class SonnenStorage:
             self.inverter.power_inverter = -max_discharge_power
 
             # Remaining power needed after discharging the battery
-            remaining_power_needed = house.get_power_in() - pv_panel.get_power() - max_discharge_power
+            remaining_power_needed = house.power_in - pv_panel.power - max_discharge_power
 
             # If power is still needed, get it from the grid
             if remaining_power_needed > 0:
                 max_grid_power = min(remaining_power_needed, self.inverter.get_max_power())
-                grid.set_power_bought(max_grid_power)
+                grid.bought_power(max_grid_power)
 
     class Inverter:
         def __init__(self, max_power=5000.0, battery_voltage=48.0, battery_current=0.0, power_inverter=0.0,
